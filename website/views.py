@@ -3,6 +3,7 @@ from . models import User, Item, Order, Cart
 from flask_login import login_required, current_user
 from . import db
 import re, datetime
+from .form import AdminForm
 
 app_views = Blueprint('app_views', __name__)
 
@@ -21,6 +22,18 @@ def list_items():
             categories.append(i.category)
         items.append(i)
     return render_template('items.html', items=items, categories=categories)
+
+@app_views.route('/admin', methods=['GET', 'POST'])
+@login_required
+def admin():
+    form = AdminForm()
+    if form.validate_on_submit():
+        add_item = Item(name=form.item_name.data, price=form.price.data, category=form.category.data)
+        db.session.add(add_item)
+        db.session.commit()
+        return redirect('/items')
+    return render_template('admin.html', form=form)
+
 
 @app_views.route('/search', methods=['GET', 'POST'])
 @login_required
