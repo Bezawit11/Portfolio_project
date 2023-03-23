@@ -1,0 +1,29 @@
+body {
+	background-image: url(/static/vnf1.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+   }
+.name {
+		background-color: whitesmoke;
+		margin: 1% 30% 1% 30%;
+  		padding-top: 10px;
+		padding-bottom: 25px;
+  		border-style: inherit;
+}
+.sup {
+		color: black;
+		font-size: 20px;
+		font-family: Arial, Helvetica, sans-serif;
+		position: relative;
+		right: 73%;
+		background-color: inherit;
+		padding-right: 25px;
+		transition: background-color, color;
+	}
+	.sup:hover {
+			background-color: black;
+			color: white;
+	}
+
+
+

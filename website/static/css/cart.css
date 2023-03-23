@@ -1,0 +1,27 @@
+.name {
+    position: absolute;
+    border: outset;
+    padding: 10px;
+    margin: 10px;
+}
+.order{
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    height: 30px;
+}
+button:hover {
+    background-color: #0a6141;
+}
+.cancel {
+    background-color: #e74444;
+    border: none;
+    color: white;
+}
+.cancel:hover {
+    background-color: #a50f0f;
+}
+table, th, td {
+    border:1px solid black;
+    padding: 6px;
+  }

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Selah Market</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/items.css') }}" />
+	<script>
+		function show_hide() {
+    	var btn = document.getElementById("list-of-categories");
+    	if (btn.style.display === "none") {
+       		btn.style.display = "block";
+    	} else {
+       		btn.style.display = "none";
+    	}
+ 	}
+	</script>	
+</head>
+	<body>
+		<header>
+		</header>
+	{% with messages = get_flashed_messages() %}  
+	{% if messages %}  
+	<div class="message">
+		  {% for message in messages %}  
+			   <p>{{ message }}</p>  
+		  {% endfor %}  
+	{% endif %}  
+	 {% endwith %}
+	 </div>
+	 <div class="profile">
+			<a href="/show-cart">Shopping Cart</a>
+			<a href="/view-history">My history</a>
+			<a href="/logout">Logout</a>
+		</div>
+		<h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif;">Welcome {{ current_user.username }}!</h2>
+		<div class="dropdown">
+			{% if listOf %}
+			<button onclick="show_hide()" class="drop-btn">{{listOf}}</button>
+			{% else %}
+			<button onclick="show_hide()" class="drop-btn">All</button>
+			{% endif %}
+			<div id="list-of-categories">
+				<a href="/category/all" class="category"> All </a>
+				{% for c in categories %}
+			   <a href="/category/{{c}}" class="category"> {{c}} </a>
+			    {% endfor %}
+			</div>
+		 </div>
+		<div class="search">
+            <form method="POST" action="/search">
+                <input type="text" placeholder="Search..." name="searched_name"/>
+                <button type="submit">search</button>
+              </form>
+		</div>
+			  <br><br>
+			  {% for i in items %}
+			  <div class="product">
+			  <fieldset>
+			  <p>{{i.name}} .............. {{i.price}}</p>
+			  <form action="/in_cart" method="post">
+				<input name="quantity" value="0">
+				<br><br>
+				<button id="btn" name='orderz' value="{{ i.id }}">Add to cart</button>
+					</form>
+				</fieldset>
+				</div>
+                {% endfor %}
+		<footer>
+		</footer>
+	</body>
+</html>

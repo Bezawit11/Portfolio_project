@@ -1,0 +1,111 @@
+a {
+    position: absolute;
+    left: 70%;
+}
+.message {
+    position: relative;
+    text-align: center;
+    background-color: rgb(188, 171, 109);
+    color: white;
+    height: 30px;
+}
+.product{
+    display: inline;
+    margin: 0px 10px 0px 10px;
+    width: 10%;
+}
+fieldset {
+    display: inline;
+    width: 8%;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+.ssearch {
+    display:flex;
+    justify-content: center;
+}
+.search input {
+    position: absolute;
+    left: 30%;
+    padding: 6px 3px 6px 14px;
+    display: inline;
+    border: 1px slategrey #ccc;
+    box-sizing: border-box;
+    width: 30%; 
+    height: 40px;
+}
+.search button {
+    position: relative;
+    left: 60%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 6px 3px 6px 15px;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    height: 40px;
+    transition: background-color;
+}
+.profile a{
+    color: black;
+    position: relative;
+    right: 50%;
+    padding-right: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+.search button:hover {
+    background-color: #0a6141;
+}
+.dropdown{
+    position: absolute;
+    left: 21.5%;
+    display: block;
+}
+.drop-btn{
+    background-color: rgb(158, 155, 155);
+    border: none;
+    color: white;
+    width: 109px;
+    height: 40px;
+    padding: 10px;
+    transition: background-color;
+}
+.drop-btn:hover{
+    background-color: rgb(81, 79, 79);
+}
+
+#btn {
+    background-color: #ec891f;
+    border: none;
+    color: white;
+    height: 30px;
+    transition: background-color;
+}
+#btn:hover {
+    background-color: #b9900b;
+}
+
+#list-of-categories {
+    display: none;
+    position: relative;
+    width: 109px;
+    transition: background-color;
+}
+
+.category{
+    position: relative;
+    left: 0%;
+    background-color: rgb(158, 155, 155);
+    display: block;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    transition: background-color;
+}
+.category:hover{
+    background-color: rgb(81, 79, 79);;
+}
+

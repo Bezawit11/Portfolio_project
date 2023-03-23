@@ -1,0 +1,39 @@
+.text {
+    padding: 12px 15px;
+      margin: 5px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    width: 60%;
+}
+.line{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    width: 60%;
+    transition: background-color;
+}
+.line:hover {
+    background-color: #0a6141;
+}
+.login, .signup {
+    position: relative;
+    left: 20%;
+}
+li {
+display: inline;
+padding: 10px;
+position: relative;
+left: 80%;
+}
+
+.flash_message {
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(196, 106, 106);
+    height: 60px;
+}

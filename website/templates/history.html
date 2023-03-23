@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Beza Market</title>
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" /> -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}" />
+</head>
+	<body>
+		<header>
+		</header>
+			<div class="name">
+				<h2>Order History</h2>
+				{% if not all_orders %}
+				<p>No orders yet</p>
+				{% endif %}
+				<table>
+					<tr>
+					  <th>Item</th>
+					  <th>Price</th>
+					  <th>Amount</th>
+					  <th>Address</th>
+					</tr>
+					{% for i in all_orders %}
+					<tr>
+					  <td>{{ i.item.name }}</td>
+					  <td>{{ i.item.price }}</td>
+					  <td>{{ i.amount }}</td>
+					  <td>{{ i.address }}</td>
+					</tr>
+					{% endfor %}
+				  </table>
+				  <p>Total price: {{ total_price }}</p>
+			</div>
+		<footer>
+		</footer>
+	</body>
+</html>
+

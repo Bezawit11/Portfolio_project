@@ -1,0 +1,22 @@
+{% extends "home.html" %}
+
+	{% block main %}
+  {% with messages = get_flashed_messages() %}  
+  {% if messages %}  
+        {% for message in messages %}  
+             <p>{{ message }}</p>  
+        {% endfor %}  
+  {% endif %}
+   {% endwith %}  
+    <form method="post" action="/sign-up" class="signup">
+      {{ form.hidden_tag() }}
+      <p>{{ form.username.label }}</p>
+      <p>{{ form.username(class_="text") }}</p>
+      <p>{{ form.email.label }}</p>
+      <p>{{ form.email(class_="text") }}</p>
+      <p>{{ form.password.label }}</p>
+      <p>{{ form.password(class_="text") }}</p>
+      <p>{{ form.submit(class_="line") }}</p>
+    </form>
+  {% endblock %}
+
