@@ -1,4 +1,4 @@
-Selah online grocery stor MVP
+Selah online grocery store MVP
 
 Backend
 - python with flask framework
