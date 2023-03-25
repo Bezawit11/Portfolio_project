@@ -43,7 +43,7 @@ def searched():
     n = request.form['searched_name']
     res = Item.query.all()
     for i in res:
-        if re.search(i.name.lower(), n.lower()) or re.search(n.lower(), i.name.lower()):
+        if re.search(n.lower(), i.name.lower()):
             result.append(i)
         if i.category not in categories:
             categories.append(i.category)
