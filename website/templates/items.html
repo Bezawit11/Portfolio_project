@@ -55,9 +55,9 @@
 			  {% for i in items %}
 			  <div class="product">
 			  <fieldset>
-			  <p>{{i.name}} .............. {{i.price}}</p>
+			  <p>{{i.name}} .............. {{i.price}} birr</p>
 			  <form action="/in_cart" method="post">
-				<input name="quantity" value="0">
+				<input name="quantity" placeholder="Enter amount...">
 				<br><br>
 				<button id="btn" name='orderz' value="{{ i.id }}">Add to cart</button>
 					</form>
