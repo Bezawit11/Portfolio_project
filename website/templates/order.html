@@ -1,19 +1,17 @@
-<!-- Store this code in 'login.html' file inside the 'templates' folder -->
-
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title> Login </title>		
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/order.css') }}" />
+		<title> Check-out </title>		
 	</head>
 	<body>
 				<h1>Order form</h1>
-			<h2>
 				<form action="/order" method="post">
-					<input name="phone_number" type="text" placeholder="phone_number"/></br></br>
+					<label for="phone_number">Enter phone number: </label><br><br>
+					<input name="phone_number" type="text" placeholder="phone-number"/></br></br>
+					<label for="address">Enter address:</label><br><br>
 					<input name="address" type="text" placeholder="address"/></br></br>
 					<button type="submit">Submit</button>
-			</h2>
-	
 	</body>
 </html>
 
