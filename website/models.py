@@ -6,6 +6,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     username = db.Column(db.String(100), unique=True)
+    is_admin = db.Column(db.Boolean, default=False)
     orders = db.relationship('Order', backref='user', lazy=True)
     cart = db.relationship('Cart', backref='user', uselist=False)
 
