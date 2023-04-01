@@ -28,6 +28,9 @@
 	 </div>
 	 <div class="profile">
 			<a href="/show-cart">Shopping Cart</a>
+		        {% if current_user.is_admin == True %}
+			<a href="/admin">Admin</a>
+			{% endif %}
 			<a href="/view-history">My history</a>
 			<a href="/logout">Logout</a>
 		</div>
