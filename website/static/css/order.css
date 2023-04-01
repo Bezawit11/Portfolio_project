@@ -1,0 +1,20 @@
+button{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    width: 30%;
+    transition: background-color;
+}
+button:hover {
+    background-color: #0a6141;
+}
+input{
+    width: 30%;
+    padding: 12px;
+}
+label{
+    font-family: Arial, Helvetica, sans-serif;
+}
