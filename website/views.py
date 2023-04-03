@@ -33,14 +33,18 @@ def admin():
 def NewItem():
     form = AdminForm()
     if form.validate_on_submit():
-        try:
+        item1 = Item.query.filter_by(name=form.item_name.data, category=form.category.data).first()
+        if item1:
+            item1.price = form.price.data
+            item1.out_of_stock = False
+            db.session.commit()
+            flash('Item updated')
+            return redirect('/add-items')
+        else:
             item1 = Item(name=form.item_name.data, price=form.price.data, category=form.category.data, out_of_stock=False)
             db.session.add(item1)
             db.session.commit()
-        except:
-            flash('Item name aleardy exists')
-            return redirect('/add-items')
-        return redirect('/items')
+            return redirect('/items')
     return render_template('additem.html', form=form)
     
 @app_views.route('/remove-items', methods=['GET', 'POST'])
