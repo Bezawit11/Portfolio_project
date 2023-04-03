@@ -1,12 +1,13 @@
 from . import db
 from flask_login import UserMixin
+from flask_admin import Admin
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     password = db.Column(db.String(100))
     username = db.Column(db.String(100), unique=True)
-    is_admin = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.Boolean, default=False, index=True)
     orders = db.relationship('Order', backref='user', lazy=True)
     cart = db.relationship('Cart', backref='user', uselist=False)
 
@@ -15,8 +16,9 @@ class User(db.Model, UserMixin):
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50))
+    name = db.Column(db.String(50), unique=True)
     price = db.Column(db.Float)
+    out_of_stock = db.Column(db.Boolean, default=False, nullable=False)
     category = db.Column(db.String(50))
     orders = db.relationship('Order', backref='item')
     cart = db.relationship('Cart', backref='item', uselist=False)
@@ -40,6 +42,7 @@ class Order(db.Model):
     amount = db.Column(db.Integer)
     address = db.Column(db.String(100))
     contact_number = db.Column(db.Integer)
+    delivered = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     item_id = db.Column(db.Integer, db.ForeignKey('item.id'))
 
