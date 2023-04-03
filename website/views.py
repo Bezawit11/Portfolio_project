@@ -16,24 +16,48 @@ def home():
 def list_items():
     items = []
     categories = []
-    all_items = Item.query.all()
+    all_items = Item.query.filter_by(out_of_stock=False).all()
     for i in all_items:
         if i.category not in categories:
             categories.append(i.category)
         items.append(i)
     return render_template('items.html', items=items, categories=categories)
 
-@app_views.route('/admin', methods=['GET', 'POST'])
+@app_views.route('/app_admins')
 @login_required
 def admin():
+    return render_template('admin.html')
+
+@app_views.route('/add-items', methods=['GET', 'POST'])
+@login_required
+def NewItem():
     form = AdminForm()
     if form.validate_on_submit():
-        add_item = Item(name=form.item_name.data, price=form.price.data, category=form.category.data)
-        db.session.add(add_item)
-        db.session.commit()
+        try:
+            item1 = Item(name=form.item_name.data, price=form.price.data, category=form.category.data, out_of_stock=False)
+            db.session.add(item1)
+            db.session.commit()
+        except:
+            flash('Item name aleardy exists')
+            return redirect('/add-items')
         return redirect('/items')
-    return render_template('admin.html', form=form)
-
+    return render_template('additem.html', form=form)
+    
+@app_views.route('/remove-items', methods=['GET', 'POST'])
+@login_required
+def RemoveItem():
+    if request.method == 'POST':
+        n = request.form['itemname']
+        item = Item.query.filter_by(name=n).first()   
+        if item:
+            cart = Cart.query.filter_by(item_id=item.id).first()
+            if cart:
+                db.session.delete(cart)
+                db.session.commit()
+            item.out_of_stock = True
+            db.session.commit()
+            return redirect('/items')
+    return render_template('removeitem.html')
 
 @app_views.route('/search', methods=['GET', 'POST'])
 @login_required
@@ -43,7 +67,7 @@ def searched():
     n = request.form['searched_name']
     res = Item.query.all()
     for i in res:
-        if re.search(n.lower(), i.name.lower()):
+        if re.search(n.lower(), i.name.lower()): #re.search(i.name.lower(), n.lower()) or
             result.append(i)
         if i.category not in categories:
             categories.append(i.category)
@@ -66,7 +90,7 @@ def added_to_cart():
                 db.session.commit()
         return redirect("/items")
     except:
-        flash("Input numbers only")
+        flash("Input amount correctly")
         return redirect("/items")
 
 @app_views.route('/show-cart', methods=['GET', 'POST'])
@@ -90,10 +114,13 @@ def order():
         all_cart = Cart.query.filter_by(user_id=current_user.get_id()).all()
         for j in all_cart:
             order1 = Order(amount=j.quantity, date=datetime.datetime.now(), address=address, contact_number=contact_number, item_id=j.item.id, user_id=current_user.id)
+            #item1 = Item.query.filter_by(id=j.item.id).first()
             db.session.add(order1)
             db.session.commit()
             db.session.delete(j)
             db.session.commit()
+            #db.session.delete(item1)
+            #db.session.commit()
         return redirect('/items')
     return render_template('order.html')
 
@@ -107,6 +134,8 @@ def list_by_category(category):
     specified_items = Item.query.filter_by(category=category).all()
     all_items = Item.query.all()
     for i in specified_items:
+        #orders = Order.query.filter_by(item_id=i.id).first()
+        #if not orders:
         items.append(i)
     for a in all_items:
         if a.category not in categories:
@@ -130,4 +159,5 @@ def show_order_history():
     for i in all_orders:
         total_price += i.order_price()
     return render_template('history.html', all_orders=all_orders, total_price=total_price)
+
 
