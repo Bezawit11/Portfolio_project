@@ -33,7 +33,7 @@ def admin():
 def NewItem():
     form = AdminForm()
     if form.validate_on_submit():
-        item1 = Item.query.filter_by(name=form.item_name.data, category=form.category.data).first()
+        item1 = Item.query.filter_by(name=form.item_name.data.capitalize(), category=form.category.data).first()
         if item1:
             item1.price = form.price.data
             item1.out_of_stock = False
@@ -41,7 +41,7 @@ def NewItem():
             flash('Item updated')
             return redirect('/add-items')
         else:
-            item1 = Item(name=form.item_name.data, price=form.price.data, category=form.category.data, out_of_stock=False)
+            item1 = Item(name=form.item_name.data.capitalize(), price=form.price.data, category=form.category.data, out_of_stock=False)
             db.session.add(item1)
             db.session.commit()
             return redirect('/items')
@@ -51,7 +51,7 @@ def NewItem():
 @login_required
 def RemoveItem():
     if request.method == 'POST':
-        n = request.form['itemname']
+        n = request.form['itemname'].capitalize()
         item = Item.query.filter_by(name=n).first()   
         if item:
             cart = Cart.query.filter_by(item_id=item.id).first()
