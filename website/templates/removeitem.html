@@ -1,0 +1,18 @@
+{% extends "admin.html" %}
+
+{% block main %}
+  {% with messages = get_flashed_messages() %}  
+  {% if messages %}  
+        {% for message in messages %}  
+            <div class="flash_message">
+             <p>{{ message }}</p>  
+             </div>
+        {% endfor %}  
+  {% endif %}
+  {% endwith %}
+    <form method="post" action="/remove-items" class="sign-up">
+      <label>Enter name of item: </label><br><br>
+      <input name="itemname" type="text" placeholder="Item name">
+      <button type="submit">Submit</button>
+    </form>
+    {% endblock %}

@@ -28,10 +28,10 @@
 	 </div>
 	 <div class="profile">
 			<a href="/show-cart">Shopping Cart</a>
-		        {% if current_user.is_admin == True %}
-			<a href="/admin">Admin</a>
-			{% endif %}
 			<a href="/view-history">My history</a>
+			{% if current_user.is_admin == True %}
+			<a href="/app_admins">Admin</a>
+			{% endif %}
 			<a href="/logout">Logout</a>
 		</div>
 		<h2 style="text-align: center; font-family: Arial, Helvetica, sans-serif;">Welcome {{ current_user.username }}!</h2>
@@ -41,6 +41,7 @@
 			{% else %}
 			<button onclick="show_hide()" class="drop-btn">All</button>
 			{% endif %}
+			<!-- dropdown list items will show when we click the drop button -->
 			<div id="list-of-categories">
 				<a href="/category/all" class="category"> All </a>
 				{% for c in categories %}
@@ -63,10 +64,15 @@
 				<input name="quantity" placeholder="Enter amount...">
 				<br><br>
 				<button id="btn" name='orderz' value="{{ i.id }}">Add to cart</button>
+					<!-- add a javascript that will change the text order to oordered afre the
+					customer orders an item -->
 					</form>
 				</fieldset>
 				</div>
                 {% endfor %}
+				<!-- <form action="/show-cart" method="get">
+					<button>Shopping cart</button>
+				</form> -->
 		<footer>
 		</footer>
 	</body>

@@ -1,0 +1,23 @@
+{% extends "admin.html" %}
+
+{% block main %}
+  {% with messages = get_flashed_messages() %}  
+  {% if messages %}  
+        {% for message in messages %}  
+            <div class="flash_message">
+             <p>{{ message }}</p>  
+             </div>
+        {% endfor %}  
+  {% endif %}
+  {% endwith %}
+    <form method="post" action="/add-items" class="sign-up">
+      {{ form.hidden_tag() }}
+      <p>{{ form.item_name.label }}</p>
+      <p>{{ form.item_name(class_="add") }}</p>
+      <p>{{ form.price.label }}</p>
+      <p>{{ form.price(class_="add") }}</p>
+      <p>{{ form.category.label }}</p>
+      <p>{{ form.category(class_="add") }}</p>
+      <p>{{ form.submit(class_="additem") }}</p>
+    </form>
+    {% endblock %}

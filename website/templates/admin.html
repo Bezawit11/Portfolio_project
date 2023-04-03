@@ -1,27 +1,24 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
+        <title>Admin Dashboard</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/additem.css') }}" />
     </head>
     <body>
-  {% with messages = get_flashed_messages() %}  
-  {% if messages %}  
-        {% for message in messages %}  
-            <div class="flash_message">
-             <p>{{ message }}</p>  
-             </div>
-        {% endfor %}  
-  {% endif %}
-  {% endwith %}
-    <form method="post" action="/admin" class="sign-up">
-      {{ form.hidden_tag() }}
-      <p>{{ form.item_name.label }}</p>
-      <p>{{ form.item_name(class_="add") }}</p>
-      <p>{{ form.price.label }}</p>
-      <p>{{ form.price(class_="add") }}</p>
-      <p>{{ form.category.label }}</p>
-      <p>{{ form.category(class_="add") }}</p>
-      <p>{{ form.submit(class_="additem") }}</p>
-    </form>
+        <header>
+        </header>
+        <main>
+        <div class="navi">
+            <a href="/add-items">Add Items</a><br><br>
+            <a href="/remove-items">Remove Items</a><br><br>
+            <a href="/show-orders">Customer Orders</a><br>
+        </div>
+        <div class="body-part">
+        {% block main %}
+        <p>select an action from the nav bar</p>
+        {% endblock %}
+        </div>
+    </main>
     </body>
-    </html>
+</html>
