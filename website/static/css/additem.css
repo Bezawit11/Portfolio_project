@@ -1,0 +1,31 @@
+
+.add {
+    padding: 5px 15px;
+    margin: 5px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    width: 70%;
+}
+.additem{
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 5px 0;
+    border: none;
+    cursor: pointer;
+    width: 40%;
+    transition: background-color;
+}
+
+.additem:hover {
+    background-color: #0a6141;
+}
+
+.flash_message {
+    text-align: center;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(196, 106, 106);
+    height: 60px;
+}
