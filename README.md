@@ -1,6 +1,7 @@
 Selah online grocery
+- -	An online grocery shop that allows people to buy products from the comfort of their home.
 
-Inspiration
+Inspiration behind the project
 - In the area I live in grocery shopping is done by physically going to a grocery and buying products. This poses a problem to a lot of people who are busy and are unable to do that when they have to. In addition to that, a person might not be able to find the product they are looking for after visiting the grocery. This is another problem that needs a solution. So this is what inspired me to build this application. 
 
 Backend
